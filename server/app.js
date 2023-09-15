@@ -18,7 +18,7 @@ app.use(express.json());
 
 //This part of the code is used call the API entry point of MONGODB
 //Use environment variable to store the URI of the MongoDB instance
-mongoose.connect("your-mongodb-access-key");
+mongoose.connect("your-mongo-db-key");
 
 //This is an IF check whether the database is connected or not
 if (mongoose.ConnectionStates.connected) {

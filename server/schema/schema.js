@@ -9,7 +9,6 @@ const { GraphQLObjectType,GraphQLString, GraphQLSchema, GraphQLID,GraphQLList, G
 
 const Book = require('../model/book');
 const Author = require('../model/author');
-const { options } = require('../../../mern-exercise-tracker/backend/Routes/exercises');
 
 
 const BookType =  new GraphQLObjectType({
@@ -117,7 +116,7 @@ const Mutation = new GraphQLObjectType({
             args: {
                 name:{type:GraphQLString},
                 genre:{type:GraphQLString},
-                authorid:{type:GraphQLID}
+                authorid:{type:GraphQLString}
             },
             async resolve(parent,args){
                 let book = new Book({
