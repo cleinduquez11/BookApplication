@@ -25,4 +25,12 @@ const Get_Author = gql`
     }
   }
 `;
-export{Get_Books, Add_Book, Get_Author};
+
+const Delete_Book = gql`
+mutation($id:String!){
+  deleteBook(id:$id){
+    name
+  }
+}
+`;
+export{Get_Books, Add_Book, Get_Author, Delete_Book};
