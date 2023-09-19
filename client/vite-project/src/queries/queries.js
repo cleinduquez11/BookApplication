@@ -33,4 +33,20 @@ mutation($id:String!){
   }
 }
 `;
-export{Get_Books, Add_Book, Get_Author, Delete_Book};
+
+const Find_Book_By_Id = gql`
+query($id:ID!){
+  FindBookById(id:$id){
+    id
+    name
+    author{
+      id
+      name
+      books{
+        name
+      }
+    }
+  }
+}
+`;
+export{Get_Books, Add_Book, Get_Author, Delete_Book, Find_Book_By_Id};

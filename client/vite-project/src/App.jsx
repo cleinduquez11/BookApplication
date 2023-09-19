@@ -1,53 +1,46 @@
-import { Box, GlobalStyles, Grid } from "@mui/material";
+import { Box, GlobalStyles, Grid, Paper, Typography } from "@mui/material";
 import AddBook from "./components/AddBook";
-import BookList from "./components/Booklist";
+import BookList, { BookInfo } from "./components/Booklist";
 import "./index.css";
+import Add from "./components/AddBook";
+import DisplayBooks from "./components/Booklist";
+
 function App() {
   return (
     <>
       <GlobalStyles
         styles={{
-          body: { backgroundColor: "#F5CDDE" },
+          body: { backgroundColor: "#F5CDDE", padding: "20px 20px" },
         }}
       />
 
-      <Grid container justifyContent="center" textAlign="center" gap={1}>
-        <Grid xl={3} sm={1}>
-          <Box
-            mt={2}
-            display={{ xs: "none", sm: "block" }}
-            width="auto"
-            height={300}
-          >
-            {/* <BookList />
-            <AddBook /> */}
-          </Box>
-        </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexGrow: 1,
+          justifyContent: "center",
+          gap: "50px",
+          padding: "20px, 20px",
+        }}
+      >
+        <Box>
+          <DisplayBooks />
+        </Box>
 
-        <Grid xl={3} sm={5}>
-          <Box
-            mt={2}
-            display={{ xs: "none", sm: "block" }}
-            width="auto"
-            height={300}
+        <Box>
+          <Paper
+            elevation={6}
+            sx={{
+              padding: "20px",
+              textAlign: "center",
+            }}
           >
-            <BookList />
-            {/* <AddBook /> */}
-          </Box>
-        </Grid>
-
-        <Grid xl={3} sm={5}>
-          <Box
-            mt={2}
-            display={{ xs: "none", sm: "block" }}
-            width="auto"
-            height={300}
-          >
-            {/* <BookList /> */}
-            <AddBook />
-          </Box>
-        </Grid>
-      </Grid>
+            <Typography variant="h4">Add a Book</Typography>
+            <Add />
+          </Paper>
+        </Box>
+      </Box>
     </>
   );
 }

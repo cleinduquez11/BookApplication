@@ -13,7 +13,7 @@ import {
   Typography,
 } from "@mui/material";
 
-function Add() {
+export default function Add() {
   const [add, { loading, error, reset }] = useMutation(Add_Book, {
     refetchQueries: [
       {
@@ -24,25 +24,20 @@ function Add() {
 
   const [Name, setName] = useState("");
   const [Genre, setGenre] = useState("");
-
-  const [authorid, setAuthorID] = useState("");
+  const [Description, setDescription] = useState("");
+  const [AuthorId, setAuthorId] = useState("");
 
   if (loading) return <p>Submitting...</p>;
   if (error) return <p>Submission error! ${error.message}</p>;
 
-  const handleChange = (event) => {
-    // console.log(event.target.value);
-    setAuthorID(event.target.value);
-  };
-
   const submit = (e) => {
     e.preventDefault();
-    // console.log(Name, Genre, authorid);
+    // console.log(Name, Genre, Description, AuthorId);
     add({
       variables: {
         name: Name,
         genre: Genre,
-        authorid: authorid,
+        authorid: AuthorId,
       },
     });
   };
@@ -52,31 +47,42 @@ function Add() {
         <TextField
           required
           variant="outlined"
+          label="Book Name"
           type="text"
           name=""
           id=""
-          placeholder="Book Name"
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div id="form-input">
         <TextField
           variant="outlined"
+          label="Book Genre"
           required
           type="text"
           name=""
           id=""
-          placeholder="Book Genre"
           onChange={(e) => setGenre(e.target.value)}
+        />
+      </div>
+
+      <div className="form-input">
+        <TextField
+          id="outlined-multiline-static"
+          label="Book Description"
+          // required
+          multiline
+          rows={4}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <div id="form-input">
         <InputLabel id="demo-simple-select-label">Author</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          value={authorid}
+          value={AuthorId}
           label="Author"
-          onChange={handleChange}
+          onChange={(e) => setAuthorId(e.target.value)}
         >
           <MenuItem value="None">
             <em>None</em>
@@ -96,24 +102,4 @@ function Add() {
       </div>
     </form>
   );
-}
-
-export default class AddBook extends Component {
-  render() {
-    return (
-      <>
-        <Paper
-          elevation={6}
-          sx={{
-            padding: "30px",
-          }}
-        >
-          <Typography variant="h4" component="p">
-            Add a Book
-          </Typography>
-          <Add />
-        </Paper>
-      </>
-    );
-  }
 }
